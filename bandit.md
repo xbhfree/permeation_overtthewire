@@ -56,7 +56,7 @@ ssh
   
   - ls
   
-  -  cat 'spaces in this filename'
+  - cat 'spaces in this filename'
   
   - 获得密码: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
 
@@ -139,30 +139,147 @@ ssh
       - b、c：分别表示区块(block)设备和字符（character）设备，是特殊类型的文件。
       
       - s、p：这些文件关系到系统的数据结构和管道(pipe)，通常很少见到。 
-        
-    
+
     - -size 用于查找指定大小的文件
-      
+    
       - c 代表bit
+
+- cat ./inhere/maybehere07/.file2
+
+- 获得密码：P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+
+## lv6-7
+
+- 目标：
   
-  -  cat ./inhere/maybehere07/.file2
+  - The password for the next level is stored **somewhere on the server** and has all of the following properties:
+    
+    - owned by user bandit7
+    - owned by group bandit6
+    - 33 bytes in size
+
+- 命令学习：
   
-  - 获得密码：P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+  - [ls](https://man7.org/linux/man-pages/man1/ls.1.html) , [cd](https://man7.org/linux/man-pages/man1/cd.1p.html) , [cat](https://man7.org/linux/man-pages/man1/cat.1.html) , [file](https://man7.org/linux/man-pages/man1/file.1.html) , [du](https://man7.org/linux/man-pages/man1/du.1.html) , [find](https://man7.org/linux/man-pages/man1/find.1.html) , [grep](https://man7.org/linux/man-pages/man1/grep.1.html)
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit6@bandit.labs.overthewire.org   P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+  
+  - find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
     
+    - 2>/dev/null把错误信息删除
     
+    - 0\1\2代表标准输入、标准输出、标准错误
+  
+  -  cat /var/lib/dpkg/info/bandit7.password
+  
+  - 获得密码：z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
-## lv
+## lv7-8
+
+- 目标：
+  
+  - The password for the next level is stored in the file **data.txt** next to the word **millionth**
+
+- 命令学习：
+  
+  - [man](https://man7.org/linux/man-pages/man1/man.1.html), grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit7@bandit.labs.overthewire.org z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+  
+  - ls
+  
+  -  cat data.txt | grep millionth
+  
+  - 获得密码：millionth       TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+
+## lv8-9
+
+- 目标
+  
+  - The password for the next level is stored in the file **data.txt** and is the only line of text that occurs only once：
+
+- 命令学习：
+  
+  - grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit8@bandit.labs.overthewire.org TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+  
+  - sort data.txt | uniq -u
+  
+  - 或者cat data.txt | sort | uniq -c | sort -n
+    
+    - sort -n 识别重复数据个数并按照从小到大排序
+    
+    - sort -rn 从大到小排序
+  
+  - 获得密码：EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+
+## lv9-10
+
+- 目标：
+  
+  - The password for the next level is stored in the file **data.txt** in one of the few human-readable strings, preceded by several ‘=’ characters.
+
+- 命令学习：
+  
+  - grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit9@bandit.labs.overthewire.org EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+  
+  - strings data.txt | grep '^='
+    
+    - "^正则表达式以^开头，$结尾  /$$$"
+  
+  - 获得密码：G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+
+## lv10-11
+
+- 目标：
+  
+  - The password for the next level is stored in the file **data.txt**, which contains base64 encoded data
+
+- 命令学习：
+  
+  - grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit10@bandit.labs.overthewire.org G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+  
+  - base64 -d data.txt
+    
+    - -d 解码
+    
+    - -i 解码时忽略非字母字符
+    
+    - -w 在指定的字符后换行，默认为76，0为禁止换行
+    
+    - --help
+    
+    - --version
+  
+  - 获得密码：The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
 
 
 
 
 
 
-
-ssh -p 2220 bandit2 bandit.labs.overthewire.org
 
 - 目标：
 
 - 命令学习：
 
 - 解题步骤：
+  
+  - ssh -p 2220 bandit2 bandit.labs.overthewire.org
+  
+  - 获得密码：
