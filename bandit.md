@@ -139,9 +139,9 @@ ssh
       - b、c：分别表示区块(block)设备和字符（character）设备，是特殊类型的文件。
       
       - s、p：这些文件关系到系统的数据结构和管道(pipe)，通常很少见到。 
-
-    - -size 用于查找指定大小的文件
     
+    - -size 用于查找指定大小的文件
+      
       - c 代表bit
 
 - cat ./inhere/maybehere07/.file2
@@ -172,7 +172,7 @@ ssh
     
     - 0\1\2代表标准输入、标准输出、标准错误
   
-  -  cat /var/lib/dpkg/info/bandit7.password
+  - cat /var/lib/dpkg/info/bandit7.password
   
   - 获得密码：z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
 
@@ -192,7 +192,7 @@ ssh
   
   - ls
   
-  -  cat data.txt | grep millionth
+  - cat data.txt | grep millionth
   
   - 获得密码：millionth       TESKZC0XvTetK0S9xNwm25STk5iWrBvP
 
@@ -267,6 +267,32 @@ ssh
     - --version
   
   - 获得密码：The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+
+## lv11-12
+
+- 目标：
+  
+  - The password for the next level is stored in the file **data.txt**, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+- 命令学习：
+  
+  - grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit11@bandit.labs.overthewire.org 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+  
+  - cat data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'
+    
+    - tr 转换命令，a-z转换为a->n..... z->m，即向后移动13位，是ROT13加密算法的一种实现
+  
+  - 获得密码：The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+
+
+
+
+
+
 
 
 
