@@ -288,6 +288,106 @@ ssh
   
   - 获得密码：The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
 
+## lv12-13
+
+- 目标：
+  
+  - The password for the next level is stored in the file **data.txt**, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+- 命令学习：
+  
+  - grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd, mkdir, cp, mv, file
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit12@bandit.labs.overthewire.org JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+  
+  -  mkdir /tmp/datatmp
+  
+  - cp data.txt /tmp/datatmp
+  
+  -  cd /tmp/datatmp
+  
+  - xxd -r data.txt  > data.bin 
+    
+    - 16进制转换
+  
+  - file data.bin
+  
+  - mv data.bin data.gz
+  
+  - gzip -d data.gz
+  
+  - file data
+  
+  - mv data data.bz2
+  
+  - bzip2 -d data.bz2
+  
+  - file data
+  
+  - mv data data.gz
+  
+  - gzip -d data.gz
+  
+  - file data
+  
+  - mv data data.tar
+  
+  - tar xvf data.tar
+  
+  - file data5.bin
+  
+  - mv data5.bin data5.tar
+  
+  - tart xvf data5.tar
+  
+  - file data6.bin
+  
+  - mv data6.bin data6.bz2
+  
+  - bzip2 -d data6.bz2
+  
+  -  file data6
+  
+  -  mv data6 data6.tar
+  
+  - tar xvf data6.tar
+  
+  - file data8.bin
+  
+  -  mv data8.bin data8.gz
+  
+  - gzip -d data8.gz
+  
+  - file data8
+  
+  - cat data8
+  
+  - 获得密码：The password is wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+  
+  - 压缩文件格式
+    
+    - gzip ——>  .gz       gzip -d
+    
+    - bzip2 ——> .bz2   bzip2 -d
+    
+    - tar ——> .tar        tar xvf
+      
+      - -x 从压缩包内提取文件
+      
+      - -v显示执行过程详细信息
+      
+      - -f指定压缩包文件
+
+
+
+
+
+
+
+
+
 
 
 
