@@ -302,11 +302,11 @@ ssh
   
   - ssh -p 2220 bandit12@bandit.labs.overthewire.org JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
   
-  -  mkdir /tmp/datatmp
+  - mkdir /tmp/datatmp
   
   - cp data.txt /tmp/datatmp
   
-  -  cd /tmp/datatmp
+  - cd /tmp/datatmp
   
   - xxd -r data.txt  > data.bin 
     
@@ -348,15 +348,15 @@ ssh
   
   - bzip2 -d data6.bz2
   
-  -  file data6
+  - file data6
   
-  -  mv data6 data6.tar
+  - mv data6 data6.tar
   
   - tar xvf data6.tar
   
   - file data8.bin
   
-  -  mv data8.bin data8.gz
+  - mv data8.bin data8.gz
   
   - gzip -d data8.gz
   
@@ -379,6 +379,26 @@ ssh
       - -v显示执行过程详细信息
       
       - -f指定压缩包文件
+
+## lv13-14
+
+- 目标：
+  
+  - The password for the next level is stored in **/etc/bandit_pass/bandit14 and can only be read by user bandit14**. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. **Note:** **localhost** is a hostname that refers to the machine you are working on
+
+- 命令学习：
+  
+  - ssh, telnet, nc, openssl, s_client, nmap
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit13@bandit.labs.overthewire.org wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+  
+  - ssh -i sshkey.private bandit14@localhost -p 2220
+  
+  - cat /etc/bandit_pass/bandit14
+  
+  - 获得密码：fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
 
 
 
