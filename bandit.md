@@ -400,6 +400,41 @@ ssh
   
   - 获得密码：fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
 
+## lv14-15
+
+- 目标：
+  
+  - The password for the next level can be retrieved by submitting the password of the current level to **port 30000 on localhost**.
+
+- 命令学习：
+  
+  - ssh, telnet, nc, openssl, s_client, nmap
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit14@bandit.labs.overthewire.org  fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+  
+  - telnet localhost 30000
+    
+    - telnet命令的功能是用于控制远程主机，作为常用的telnet协议的客户端工具，使用该命令后能够控制一切开启了telnet协议支持的设备  
+      原文链接：[telnet命令 &#8211; 控制远程设备 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/telnet)
+    
+    - 语法格式：telnet [参数] 域名或IP地址  
+  
+  - 输入密码：fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+  
+  - 获得密码：jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+
+
+
+
+
+
+
+
+
+
+
 
 
 
