@@ -425,7 +425,40 @@ ssh
   
   - 获得密码：jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
 
+## lv15-16
 
+- 目标：
+  
+  - The password for the next level can be retrieved by submitting the password of the current level to **port 30001 on localhost** using SSL encryption.
+    
+    **Helpful note: Getting “HEARTBEATING” and “Read R BLOCK”? Use -ign_eof and read the “CONNECTED COMMANDS” section in the manpage. Next to ‘R’ and ‘Q’, the ‘B’ command also works in this version of that command…**
+
+- 命令学习：
+  
+  - ssh, telnet, nc, openssl, s_client, nmap
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit15@bandit.labs.overthewire.org jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+  
+  - openssl  s_client -connect localhost:30001
+    
+    - openSSL是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用  
+      原文链接：[openssl命令 &#8211; 加密算法 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/openssl)
+    
+    - s_client为一个SSL%2FTLS客户端程序，与s_server对应，它不仅能与s_server进行通信，也能与任何使用ssl协议的其他服务程序进行通信。
+    
+    - s_client -connect -host host:设置地址
+    
+    - s_client -connect -port:设置端口，默认443
+    
+    -  s_client -connec host:port 连接
+    
+    - 更多命令： https://blog.51cto.com/215687833/1831653
+  
+  - 输入密码：jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+  
+  - 获得密码：JQttfApK4SeyHwDlI9SXGR50qclOAil1
 
 
 
