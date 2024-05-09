@@ -474,12 +474,20 @@ ssh
     
     * 扫描指定端口
     - nmap -p [地址或者地址范围]  域名
+  
+  - chmod
+    
+    - chmod abc file
+    
+    - a,b,c各为一个数字，分别表示User、Group、及Other的权限
+    
+    - r、w、x、代表读、写、执行——r=4，w=2，x=1
 
 - 解题步骤：
   
   - ssh -p 2220 bandit16@bandit.labs.overthewire.org JQttfApK4SeyHwDlI9SXGR50qclOAil1
   
-  -  nmap -p 31000-32000 localhost
+  - nmap -p 31000-32000 localhost
   
   - 获得
     
@@ -554,27 +562,9 @@ ssh
   
   - ssh -i key bandit17@localhost -p 2220
   
-  -  cat /etc/bandit_pass/bandit17
+  - cat /etc/bandit_pass/bandit17
   
   - 获得密码：VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 - 目标：
 
