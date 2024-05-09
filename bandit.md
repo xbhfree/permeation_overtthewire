@@ -566,6 +566,76 @@ ssh
   
   - 获得密码：VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
 
+## lv17-18
+
+- 目标：
+  
+  - There are 2 files in the homedirectory: **passwords.old and passwords.new**. The password for the next level is in **passwords.new** and is the only line that has been changed between **passwords.old and passwords.new**
+    
+    **NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19**
+
+- 命令学习：
+  
+  - cat, grep, ls, diff
+  
+  - diff
+    
+    - diff 参数 文件名1 文件名2  
+      原文链接：[diff命令 &#8211; 比较文件内容差异 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/diff)
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit17@bandit.labs.overthewire.org VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+  
+  - diff passwords.old  passwords.new
+  
+  - 42c42
+    < p6ggwdNHncnmCNxuAt0KtKVq185ZU7AW
+    
+    ---
+    
+    > hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+  
+  - 获得密码：hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - 目标：
 
 - 命令学习：
