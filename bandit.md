@@ -598,11 +598,21 @@ ssh
   
   - 获得密码：hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
 
+## lv18-19
 
+- 目标：
+  
+  - The password for the next level is stored in a file **readme** in the homedirectory. Unfortunately, someone has modified **.bashrc** to log you out when you log in with SSH.
 
+- 命令学习：
+  
+  - ssh, ls, cat
 
-
-
+- 解题步骤：
+  
+  - ssh -p 2220 bandit18@bandit.labs.overthewire.org “cat ./readme"   hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+  
+  - 获得密码：awhqfNnAbc1naukrpqDYcF95h7HoMTrC
 
 
 
