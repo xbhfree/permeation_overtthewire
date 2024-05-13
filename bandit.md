@@ -614,6 +614,25 @@ ssh
   
   - 获得密码：awhqfNnAbc1naukrpqDYcF95h7HoMTrC
 
+## lv19-20
+
+- 目标：
+  
+  - To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary.
+
+- 命令学习：
+  
+  - [setuid on Wikipedia](https://en.wikipedia.org/wiki/Setuid)
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit19@bandit.labs.overthewire.org awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+  
+  - ls -la 发现bandit20-do 有执行权限
+  
+  - ./bandit20-do cat /etc/bandit_pass/bandit20  用bandit20-do获取权限，查看密码
+  
+  - 获得密码：VxCazJaVykI6W36BkBU0mJTCM8rR95XT
 
 
 
@@ -645,6 +664,35 @@ ssh
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 模板
 
 - 目标：
 
