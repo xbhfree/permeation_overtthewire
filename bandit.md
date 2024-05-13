@@ -634,55 +634,48 @@ ssh
   
   - 获得密码：VxCazJaVykI6W36BkBU0mJTCM8rR95XT
 
+## lv20-21
 
+- 目标：
+  
+  - There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
+    
+    **NOTE:** Try connecting to your own network daemon to see if it works as you think
 
+- 命令学习：
+  
+  - ssh, nc, cat, bash, screen, tmux, Unix ‘job control’ (bg, fg, jobs, &, CTRL-Z, …)
+  
+  - nc命令来自英文词组net cat的缩写，其功能是扫描与连接指定端口。  
+    原文链接：[nc命令 &#8211; 扫描与连接指定端口 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/nc)
+    
+    - 语法格式：nc 参数 域名或IP地址  
+    
+    - -l 监听模式
+    
+    - -p 设置本地主机使用的端口
+    
+    - -v 显示执行过程
+    
+    - -h 显示帮助信息
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 解题步骤：
+  
+  - ssh -p 2220 bandit20@bandit.labs.overthewire.org VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+  
+  - printf "VxCazJaVykI6W36BkBU0mJTCM8rR95XT" | nc -l -p 7777 &
+    
+    - printf 可以用 echo代替
+    
+    - 或者 nc -l 2333 < /etc/bandit_pass/bandit20 & 用上一关得知的密码文件
+    
+    - & 起到后台运行的作用
+    
+    - 端口7777为随意指定的空闲端口
+  
+  - ./suconnect 7777
+  
+  - 获得密码：NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
 
 
 
