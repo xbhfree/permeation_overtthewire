@@ -677,13 +677,97 @@ ssh
   
   - 获得密码：NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
 
+## lv21-22
 
+- 目标：
+  
+  - A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
 
+- 命令学习：
+  
+  - cron, crontab, crontab(5) (use “man 5 crontab” to access this)
 
+- 解题步骤：
+  
+  - ssh -p 2220 bandit21@bandit.labs.overthewire.org NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+  
+  - ls
+  
+  - cat cronjob_bandit22
+    
+    - 获得：@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+      
+      * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+  
+  - cat  /usr/bin/cronjob_bandit22.sh
+    
+    - #!/bin/bash
+      chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+      cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+  
+  - cat  /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+  
+  - 获得密码：WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
 
+## lv22-23
 
+- 目标：
+  
+  - A program is running automatically at regular intervals from **cron**, the time-based job scheduler. Look in **/etc/cron.d/** for the configuration and see what command is being executed.
+    
+    **NOTE:** Looking at shell scripts written by other people is a very useful skill. The script for this level is intentionally made easy to read. If you are having problems understanding what it does, try executing it to see the debug information it prints.
 
+- 命令学习：
+  
+  - cron, crontab, crontab(5) (use “man 5 crontab” to access this)
+  
+  - crontab
+    
+    - crontab命令来自英文词组cron table的缩写，其功能是管理定时计划任务  
+      原文链接：[crontab命令 &#8211; 管理定时计划任务 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/crontab)
+  
+  - cut
+    
+    - cut命令的功能是按列提取文件内容。  
+    
+    - -d 设置分隔符
+    
+    - -f 显示指定字段内容
+    
+    - --help
 
+- 解题步骤：
+  
+  - ssh -p 2220 bandit22@bandit.labs.overthewire.org WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+  
+  - cd /etc/cron.d
+  
+  - cat cronjob_bandit23
+    
+    - @reboot bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+      
+      * * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+  
+  - cat  /usr/bin/cronjob_bandit23.sh
+    
+    - ```bash
+      #!/bin/bash
+      
+      myname=$(whoami)
+      mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+      
+      echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+      
+      cat /etc/bandit_pass/$myname > /tmp/$mytarget
+      ```
+  
+  - echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+    
+    - 8ca319486bfbbc3663ea0fbe81326349
+  
+  - cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+  
+  - 获得密码：QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
 
 # 模板
 
