@@ -934,20 +934,23 @@ ssh
 ## lv25-26
 
 * 目标：
+  
   * Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not /bin/bash, but something else. Find out what it is, how it works and how to break out of it.
 
 * 命令学习：
   
   * ssh, cat, more, vi, ls, id, pwd
+  
   * more
+    
     * 分页显示文本文件的内容  
       原文链接：[more命令 &#8211; 分页显示文本文件内容 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/more)
     * more 参数 文件名  
     * 
-      
+  
   * vim
+    
     * ：ex 使用ex底层编辑模式  
-      
 
 * 解题步骤：
   
@@ -975,11 +978,13 @@ ssh
   
   * 拉小终端后执行：ssh bandit26@localhost -i bandit26.sshkey -p 2220
   
+  * 按v 进入vim模式
+  
   * esc后输入：进入vim命令模式，输入:e /etc/bandit_pass/bandit26
   
   * 获得密码：c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
 
-## # lv26-27
+## lv26-27
 
 - 目标：
   
@@ -991,9 +996,17 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit2 bandit.labs.overthewire.org
+  - 借助lv25-26，进入到vim文档中
   
-  - 获得密码：
+  - :set shell=/bin/sh
+  
+  - :shell
+  
+  - ls -la
+  
+  -  ./bandit27-do cat /etc/bandit_pass/bandit27
+  
+  - 获得密码：YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
 
 # 模板
 
