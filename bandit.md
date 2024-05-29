@@ -1015,15 +1015,5 @@ ssh
 * 命令学习：
 
 * 解题步骤：
-  
-  * 进入上关文本内基础上，进入vim命令模式，输入 set sh=/bin/sh
-  
-  * vim命令模式输入：sh  从vim中进入shell界面
-  
-  * ls -la
     
-    * 发现bandit27-do是可执行文件
-  
-  * ./bandit27-do cat /etc/bandit_pass/bandit27
-  
-  * 获得密码：YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+  * 获得密码：
