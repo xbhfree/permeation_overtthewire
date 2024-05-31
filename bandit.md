@@ -982,6 +982,8 @@ ssh
   
   * esc后输入：进入vim命令模式，输入:e /etc/bandit_pass/bandit26
   
+     * :e 编辑模式
+  
   * 获得密码：c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
 
 ## lv26-27
@@ -1008,6 +1010,31 @@ ssh
   
   - 获得密码：YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
 
+## lv27-28
+
+* 目标：
+
+  * There is a git repository at `ssh://bandit27-git@localhost/home/bandit27-git/repo` via the port `2220`. The password for the user `bandit27-git` is the same as for the user `bandit27`.
+
+    Clone the repository and find the password for the next level.
+
+* 命令学习：
+
+  * git
+
+* 解题步骤：
+
+  * ssh -p 2220 bandit27@bandit.labs.overthewire.org 
+    * YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+  * mkdir /tmp/bandit27tmp
+  * cd /tmp/bandit27tmp
+  * git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+  * ls
+  * cd repo/
+  * ls
+  *  cat README
+  * 获得密码：AVanL161y9rsbcJIsFHuw35rjaOM19nR
+
 # 模板
 
 * 目标：
@@ -1015,5 +1042,6 @@ ssh
 * 命令学习：
 
 * 解题步骤：
-    
+  * ssh -p 2220 bandit @bandit.labs.overthewire.org
   * 获得密码：
+  
