@@ -1035,6 +1035,54 @@ ssh
   *  cat README
   * 获得密码：AVanL161y9rsbcJIsFHuw35rjaOM19nR
 
+## lv28-29
+
+* 目标：
+
+  * There is a git repository at `ssh://bandit28-git@localhost/home/bandit28-git/repo` via the port `2220`. The password for the user `bandit28-git` is the same as for the user `bandit28`.
+
+    Clone the repository and find the password for the next level.
+
+* 命令学习：
+
+  * git
+
+* 解题步骤：
+
+  * ssh -p 2220 bandit28@bandit.labs.overthewire.org
+
+    * AVanL161y9rsbcJIsFHuw35rjaOM19nR
+
+  * mkdir /tmp/bandit28tmp
+
+  * cd /tmp/bandit28tmp
+
+  * git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+
+  * git log
+
+    * ```vim
+      * commit 14f754b3ba6531a2b89df6ccae6446e8969a41f3 (HEAD -> master, origin/master, origin/HEAD)
+        Author: Morla Porla <morla@overthewire.org>
+        Date:   Thu Oct 5 06:19:41 2023 +0000
+		  
+      fix info leak
+      
+        commit f08b9cc63fa1a4602fb065257633c2dae6e5651b
+        Author: Morla Porla <morla@overthewire.org>
+        Date:   Thu Oct 5 06:19:41 2023 +0000
+		  
+      add missing data
+      
+        commit a645bcc508c63f081234911d2f631f87cf469258
+        Author: Ben Dover <noone@overthewire.org>
+        Date:   Thu Oct 5 06:19:41 2023 +0000
+	    ```
+    
+  * git show 14f754b
+  
+  * 获得密码：tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+
 # 模板
 
 * 目标：
@@ -1044,4 +1092,3 @@ ssh
 * 解题步骤：
   * ssh -p 2220 bandit @bandit.labs.overthewire.org
   * 获得密码：
-  
