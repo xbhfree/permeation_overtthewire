@@ -12,13 +12,14 @@ ssh
 
 * 解题步骤：
   
-  * ssh -p 2220  [bandit0@bandit.labs.overthewire.org](mailto:bandit1@bandit.labs.overthewire.org) bandit0
+  * ssh -p 2220  bandit0@bandit.labs.overthewire.org 
+    * bandit0
   
   * ls
   
   * cat readme
   
-  * 获得密码：NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+  * 获得密码：ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 
 ## lv1-2
 
@@ -32,13 +33,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit1@bandit.labs.overthewire.org  NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
+  - ssh -p 2220 bandit1@bandit.labs.overthewire.org  
+    - ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
   
   - ls
   
   - cat <-
   
-  - 获得密码：rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+  - 获得密码：263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
 ## lv2-3
 
@@ -52,13 +54,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit2@bandit.labs.overthewire.org rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
+  - ssh -p 2220 bandit2@bandit.labs.overthewire.org 
+    - ​	
   
   - ls
   
   - cat 'spaces in this filename'
   
-  - 获得密码: aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+  - 获得密码: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 
 ## lv3-4
 
@@ -72,7 +75,8 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit3@bandit.labs.overthewire.org aBZ0W5EmUfAf7kHTQeOwd8bauFJ2lAiG
+  - ssh -p 2220 bandit3@bandit.labs.overthewire.org 
+    - MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
   
   - ls
   
@@ -80,9 +84,9 @@ ssh
   
   - ls
   
-  - cat .hidden
+  -  cat ./...Hiding-From-You
   
-  - 获得密码：2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+  - 获得密码：2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
 
 ## lv4-5
 
@@ -96,7 +100,8 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit4@bandit.labs.overthewire.org  2EW7BBsr6aMMoJ2HjW067dm8EgX26xNe
+  - ssh -p 2220 bandit4@bandit.labs.overthewire.org  
+    - 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
   
   - ls
   
@@ -106,7 +111,7 @@ ssh
   
   - cat <-file07
   
-  - 获得密码：lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+  - 获得密码：4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
 ## lv5-6
 
@@ -124,10 +129,11 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 [bandit5@bandit.labs.overthewire.org](mailto:bandit5@bandit.labs.overthewire.org) lrIWWI6bB37kxfiCQZqUdOIYfr6eEeqR
+  - ssh -p 2220 bandit5@bandit.labs.overthewire.org 
+    - 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
   
   - find . -type f -size 1033c
-    
+  
     - -type 后面还有dlbcsp，用于查找指定文件类型
       
       - d：表示是一个目录（directory），事实上在ext2fs中，目录是一个特殊的文件。  
@@ -139,14 +145,14 @@ ssh
       - b、c：分别表示区块(block)设备和字符（character）设备，是特殊类型的文件。
       
       - s、p：这些文件关系到系统的数据结构和管道(pipe)，通常很少见到。 
-    
+  
     - -size 用于查找指定大小的文件
       
       - c 代表bit
-
+  
 - cat ./inhere/maybehere07/.file2
 
-- 获得密码：P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+- 获得密码：HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
 ## lv6-7
 
@@ -164,17 +170,18 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit6@bandit.labs.overthewire.org   P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
+  - ssh -p 2220 bandit6@bandit.labs.overthewire.org   
+    - HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
   
   - find / -user bandit7 -group bandit6 -size 33c 2>/dev/null
-    
+  
     - 2>/dev/null把错误信息删除
-    
+  
     - 0\1\2代表标准输入、标准输出、标准错误
   
   - cat /var/lib/dpkg/info/bandit7.password
   
-  - 获得密码：z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+  - 获得密码：morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 
 ## lv7-8
 
@@ -188,13 +195,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit7@bandit.labs.overthewire.org z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+  - ssh -p 2220 bandit7@bandit.labs.overthewire.org 
+    - morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
   
   - ls
   
   - cat data.txt | grep millionth
   
-  - 获得密码：millionth       TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+  - 获得密码：millionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
 ## lv8-9
 
@@ -208,17 +216,18 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit8@bandit.labs.overthewire.org TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+  - ssh -p 2220 bandit8@bandit.labs.overthewire.org 
+    - dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
   
   - sort data.txt | uniq -u
   
   - 或者cat data.txt | sort | uniq -c | sort -n
-    
+  
     - sort -n 识别重复数据个数并按照从小到大排序
-    
+  
     - sort -rn 从大到小排序
   
-  - 获得密码：EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+  - 获得密码：4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 
 ## lv9-10
 
@@ -232,13 +241,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit9@bandit.labs.overthewire.org EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+  - ssh -p 2220 bandit9@bandit.labs.overthewire.org 
+    - 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
   
   - strings data.txt | grep '^='
-    
+  
     - "^正则表达式以^开头，$结尾  /$$$"
   
-  - 获得密码：G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+  - 获得密码：FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 
 ## lv10-11
 
@@ -252,21 +262,22 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit10@bandit.labs.overthewire.org G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+  - ssh -p 2220 bandit10@bandit.labs.overthewire.org 
+    - FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
   
   - base64 -d data.txt
-    
+  
     - -d 解码
-    
+  
     - -i 解码时忽略非字母字符
-    
+  
     - -w 在指定的字符后换行，默认为76，0为禁止换行
-    
+  
     - --help
-    
+  
     - --version
   
-  - 获得密码：The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+  - 获得密码：The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 
 ## lv11-12
 
@@ -280,13 +291,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit11@bandit.labs.overthewire.org 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+  - ssh -p 2220 bandit11@bandit.labs.overthewire.org 
+    - dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
   
   - cat data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'
-    
+  
     - tr 转换命令，a-z转换为a->n..... z->m，即向后移动13位，是ROT13加密算法的一种实现
   
-  - 获得密码：The password is JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+  - 获得密码：The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 
 ## lv12-13
 
@@ -300,7 +312,8 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit12@bandit.labs.overthewire.org JVNBBFSmZwKKOP0XbFXOoW8chDz5yVRv
+  - ssh -p 2220 bandit12@bandit.labs.overthewire.org 
+    - 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
   
   - mkdir /tmp/datatmp
   
@@ -309,7 +322,7 @@ ssh
   - cd /tmp/datatmp
   
   - xxd -r data.txt  > data.bin 
-    
+  
     - 16进制转换
   
   - file data.bin
@@ -340,7 +353,7 @@ ssh
   
   - mv data5.bin data5.tar
   
-  - tart xvf data5.tar
+  - tar xvf data5.tar
   
   - file data6.bin
   
@@ -364,14 +377,14 @@ ssh
   
   - cat data8
   
-  - 获得密码：The password is wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+  - 获得密码：The password is FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
   
   - 压缩文件格式
-    
+  
     - gzip ——>  .gz       gzip -d
-    
+  
     - bzip2 ——> .bz2   bzip2 -d
-    
+  
     - tar ——> .tar        tar xvf
       
       - -x 从压缩包内提取文件
@@ -392,13 +405,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit13@bandit.labs.overthewire.org wbWdlBxEir4CaE8LaPhauuOo6pwRmrDw
+  - ssh -p 2220 bandit13@bandit.labs.overthewire.org 
+    - FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
   
   - ssh -i sshkey.private bandit14@localhost -p 2220
   
   - cat /etc/bandit_pass/bandit14
   
-  - 获得密码：fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+  - 获得密码：MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
 
 ## lv14-15
 
@@ -412,18 +426,19 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit14@bandit.labs.overthewire.org  fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+  - ssh -p 2220 bandit14@bandit.labs.overthewire.org  
+    - MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
   
   - telnet localhost 30000
-    
+  
     - telnet命令的功能是用于控制远程主机，作为常用的telnet协议的客户端工具，使用该命令后能够控制一切开启了telnet协议支持的设备  
       原文链接：[telnet命令 &#8211; 控制远程设备 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/telnet)
-    
+  
     - 语法格式：telnet [参数] 域名或IP地址  
   
-  - 输入密码：fGrHPx402xGC7U7rXKDaxiWFTOiF0ENq
+  - 输入密码：MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
   
-  - 获得密码：jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+  - 获得密码：8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
 
 ## lv15-16
 
@@ -439,26 +454,27 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit15@bandit.labs.overthewire.org jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+  - ssh -p 2220 bandit15@bandit.labs.overthewire.org 
+    - 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
   
   - openssl  s_client -connect localhost:30001
-    
+  
     - openSSL是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用  
       原文链接：[openssl命令 &#8211; 加密算法 &#8211; Linux命令大全(手册)](https://www.linuxcool.com/openssl)
-    
+  
     - s_client为一个SSL%2FTLS客户端程序，与s_server对应，它不仅能与s_server进行通信，也能与任何使用ssl协议的其他服务程序进行通信。
-    
+  
     - s_client -connect -host host:设置地址
-    
+  
     - s_client -connect -port:设置端口，默认443
-    
+  
     - s_client -connec host:port 连接
-    
+  
     - 更多命令： https://blog.51cto.com/215687833/1831653
   
-  - 输入密码：jN2kgmIXJ6fShzhT2avhotn4Zcka6tnt
+  - 输入密码：8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
   
-  - 获得密码：JQttfApK4SeyHwDlI9SXGR50qclOAil1
+  - 获得密码：kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 
 ## lv16-17
 
@@ -485,12 +501,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit16@bandit.labs.overthewire.org JQttfApK4SeyHwDlI9SXGR50qclOAil1
+  - ssh -p 2220 bandit16@bandit.labs.overthewire.org 
+  
+    - kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
   
   - nmap -p 31000-32000 localhost
   
   - 获得
-    
+  
     - 31046/tcp open  unknown
       31518/tcp open  unknown
       31691/tcp open  unknown
@@ -498,17 +516,17 @@ ssh
       31960/tcp open  unknown
   
   - openssl s_client -connect localhost:31046
-    
+  
     - dopenssl s_client -connect localhost:31518
-    
+  
     - openssl s_client -connect localhost:31691
-    
+  
     - openssl s_client -connect localhost:31790 正确
-    
+  
     - openssl s_client -connect localhost:31960
   
   - 获得ssh.pirvate 
-    
+  
     - ```textile
       -----BEGIN RSA PRIVATE KEY-----
       MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
@@ -548,7 +566,7 @@ ssh
   - 权限不够
   
   - touch key
-    
+  
     - vim编辑模式下通过Esc键进入命令模式  
       输入:set paste设置粘贴状态  
       通过输入‘i’重新进入编辑模式，进行粘贴操作  
@@ -564,7 +582,7 @@ ssh
   
   - cat /etc/bandit_pass/bandit17
   
-  - 获得密码：VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+  - 获得密码：EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
 
 ## lv17-18
 
@@ -585,18 +603,20 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit17@bandit.labs.overthewire.org VwOSWtCA7lRKkTfbr2IDh6awj9RNZM5e
+  - ssh -p 2220 bandit17@bandit.labs.overthewire.org 
+  
+    - EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
   
   - diff passwords.old  passwords.new
   
   - 42c42
     < p6ggwdNHncnmCNxuAt0KtKVq185ZU7AW
-    
-    ---
-    
-    > hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
   
-  - 获得密码：hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+    ---
+  
+    > x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+  
+  - 获得密码：x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
 
 ## lv18-19
 
@@ -610,9 +630,10 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit18@bandit.labs.overthewire.org “cat ./readme"   hga5tuuCLF6fFzUpnagiMN8ssu9LFrdg
+  - ssh -p 2220 bandit18@bandit.labs.overthewire.org “cat ./readme"   
+    - x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
   
-  - 获得密码：awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+  - 获得密码：cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
 
 ## lv19-20
 
@@ -626,13 +647,14 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit19@bandit.labs.overthewire.org awhqfNnAbc1naukrpqDYcF95h7HoMTrC
+  - ssh -p 2220 bandit19@bandit.labs.overthewire.org 
+    - cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
   
   - ls -la 发现bandit20-do 有执行权限
   
   - ./bandit20-do cat /etc/bandit_pass/bandit20  用bandit20-do获取权限，查看密码
   
-  - 获得密码：VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+  - 获得密码：0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
 
 ## lv20-21
 
@@ -661,21 +683,22 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit20@bandit.labs.overthewire.org VxCazJaVykI6W36BkBU0mJTCM8rR95XT
+  - ssh -p 2220 bandit20@bandit.labs.overthewire.org 
+    - 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
   
-  - printf "VxCazJaVykI6W36BkBU0mJTCM8rR95XT" | nc -l -p 7777 &
-    
+  - printf "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 7777 &
+  
     - printf 可以用 echo代替
-    
+  
     - 或者 nc -l 2333 < /etc/bandit_pass/bandit20 & 用上一关得知的密码文件
-    
+  
     - & 起到后台运行的作用
-    
+  
     - 端口7777为随意指定的空闲端口
   
   - ./suconnect 7777
   
-  - 获得密码：NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+  - 获得密码：EeoULMCra2q0dSkYj561DX7s1CpBuOBt
 
 ## lv21-22
 
@@ -689,25 +712,26 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit21@bandit.labs.overthewire.org NvEJF7oVjkddltPSrdKEFOllh9V1IBcq
+  - ssh -p 2220 bandit21@bandit.labs.overthewire.org 
+    - EeoULMCra2q0dSkYj561DX7s1CpBuOBt
   
   - ls
   
   - cat cronjob_bandit22
-    
+  
     - 获得：@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
       
       * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
   
   - cat  /usr/bin/cronjob_bandit22.sh
-    
+  
     - #!/bin/bash
       chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
       cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
   
   - cat  /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
   
-  - 获得密码：WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+  - 获得密码：tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
 
 ## lv22-23
 
@@ -738,18 +762,20 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit22@bandit.labs.overthewire.org WdDozAdTM2z9DiFEQ2mGlwngMfj4EZff
+  - ssh -p 2220 bandit22@bandit.labs.overthewire.org 
+  
+    - tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
   
   - cd /etc/cron.d
   
   - cat cronjob_bandit23
-    
+  
     - @reboot bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
       
       * * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
   
   - cat  /usr/bin/cronjob_bandit23.sh
-    
+  
     - ```bash
       #!/bin/bash
       
@@ -762,12 +788,12 @@ ssh
       ```
   
   - echo I am user bandit23 | md5sum | cut -d ' ' -f 1
-    
+  
     - 8ca319486bfbbc3663ea0fbe81326349
   
   - cat /tmp/8ca319486bfbbc3663ea0fbe81326349
   
-  - 获得密码：QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+  - 获得密码：0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
 
 ## lv23-24
 
@@ -789,14 +815,16 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit23@bandit.labs.overthewire.org QYw0Y2aiA672PsMmh9puTQuhoz8SyR2G
+  - ssh -p 2220 bandit23@bandit.labs.overthewire.org 
+  
+    - 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
   
   - cd /etc/cron.d
   
   - cat cronjob_bandit24
   
   - cat  /usr/bin/cronjob_bandit24.sh
-    
+  
     - ```bash
       #!/bin/bash
       
@@ -817,13 +845,13 @@ ssh
          fi
       done
       ```
-    
+  
     - 复制到bandit24，myname等于bandit24，判断如果owner等于bandit23，执行shell命令，60秒不成功就报9错误，然后删除下面的所有文件
   
   - cd /tmp/bandit23/
   
   - vim shell.sh
-    
+  
     - ```vim
       #!/bin/bash
       cat /etc/bandit_pass/bandit24 >> /tmp/bandit23/bandit23pass
@@ -833,7 +861,9 @@ ssh
   
   - cp shell.sh /var/spool/bandit24/foo/
   
-  - 获得密码：VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+  - cat bandit23pass
+  
+  - 获得密码：gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
 
 ## lv24-25
 
@@ -851,14 +881,16 @@ ssh
 
 - 解题步骤：
   
-  - ssh -p 2220 bandit24@bandit.labs.overthewire.org VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar
+  - ssh -p 2220 bandit24@bandit.labs.overthewire.org 
+  
+    - gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
   
   - mkdir /tmp/bandit24tmp
   
   - cd /tmp/bandit24tmp
   
   - vim shell.sh
-    
+  
     - ```shell
       for ((i=1000;i<10000;i++));do echo "VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar $i" >> pingcode.txt;done
       
@@ -884,11 +916,11 @@ ssh
           fi  
       done
       ```
-
+  
 - ```a.sh
   -----实际可行 创建两个sh文件，拆开查询
   #!/bin/bash 
-  BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
+  BANDIT24_PASS="gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8"  
   set t 1
   for PIN in {0000..9999}  
   do  
@@ -898,31 +930,82 @@ ssh
       fi   
   echo "$BANDIT24_PASS $PIN" >> "res$t"
   done
+  ############
+  文心一言优化版本
+  
+  #!/bin/bash   
+  BANDIT24_PASS="gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8"    
+  t=1  
+  file_index=1  
+  for PIN in $(seq -w 0000 9999); do    
+      if (( $(echo "$PIN % 500" | bc) == 0 )); then  
+          file_index=$((file_index + 1))  
+          t=$file_index  # 如果你还需要变量t来跟踪文件索引，可以这样做  
+          touch "res$t"   
+      fi    
+      echo "$BANDIT24_PASS $PIN" >> "res$file_index"  
+  done
+  
+  ####
+  在 Bash 脚本中，bc 是一个任意精度的计算器语言，它支持浮点数运算、算术运算、逻辑运算等。在你给出的代码片段中，bc 被用来执行模数（余数）运算。
+  
+  具体来说，$PIN % 500 是一个尝试计算 $PIN 除以 500 的余数的表达式，但 Bash 的内建算术扩展不支持直接处理这种格式（特别是当 $PIN 是一个字符串形式的数字时）。因此，我们需要使用外部工具来执行这个操作。
+  
+  echo "$PIN % 500" | bc 这部分代码做了以下几件事：
+  
+  echo "$PIN % 500"：输出一个字符串，这个字符串是 $PIN 变量和一个 % 500 字符串的组合。
+  |：管道操作符，它会把前一个命令的输出作为后一个命令的输入。
+  bc：这是命令行计算器，它会读取从管道传递来的字符串，并尝试计算它。在这种情况下，bc 会解析 % 为模数运算符，并返回 $PIN 除以 500 的余数。
+  然后，if (( ... == 0 )); then 这部分代码会检查 bc 计算出的余数是否等于 0。如果是，那么 then 后面的代码块就会被执行。
+  
+  简而言之，bc 在这里被用作一个外部工具，来执行 Bash 内建算术扩展无法直接处理的模数运算
   ```
-
+  
 - ```shell
   #!/bin/bash  
-  fo((i=1; i<=100; i++))
+  for((i=1; i<=100; i++))
   do
       cat "res$i" | nc localhost 30002 >> ans
       sleep 2
   done
   ```
 
-- ```shell
-  #!/bin/bash 
-  BANDIT24_PASS="VAfGXJ1PBSsPSnvsjI8p759leLZ9GGar"  
-  set t 1
-  for PIN in {0000..9999}  
-  do  
-     if (( $PIN % 500 == 0 )); then  
-          ((t++))
-          touch "res$t" 
-      fi   
-  echo "$BANDIT24_PASS $PIN" >> "res$t"
-  done
+- ```python
+  ## python2写法
+  from pwn import *
+  
+  r = remote('localhost', 30002)
+  for i in range(0, 10):
+      for j in range(0, 10):
+          for k in range(0, 10):
+              for p in range(0, 10):
+                  flag = str(i) + str(j) + str(k) + str(p)
+                  s = "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 "+ flag
+                  r.sendline(s)
+                  response = r.recvline().decode() # 注意要解码
+                  if 'Wrong!' not in response:
+                      print 'Correct! ' + response
+                
+    # python3 写法
+  from pwn import *
+  
+  r = remote('localhost', 30002)
+  for i in range(0, 10):
+      for j in range(0, 10):
+          for k in range(0, 10):
+              for p in range(0, 10):
+                  flag = str(i) + str(j) + str(k) + str(p)
+                  s = "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 "+ flag
+                  r.sendline(s)
+                  response = r.recvline().decode()
+                  if 'Wrong!' not in response:
+                      print ('Correct! ' + response)
+                      
+                      # 获得密码iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
   ```
-
+  
+- 
+  
 - 获得所有结果存到ans文件中
 
 - grep -A 2 "Correct!" ans
@@ -930,6 +1013,10 @@ ssh
 -     -A 查询之后 。-B查询之前
 
 - 获得密码：p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+
+## 标记------------------
+
+
 
 ## lv25-26
 
@@ -955,7 +1042,7 @@ ssh
 * 解题步骤：
   
   * ssh -p 2220 bandit25@bandit.labs.overthewire.org
-     p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+     iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
   
   * ssh bandit26@localhost -i bandit26.sshkey -p 2220
   
@@ -1142,6 +1229,26 @@ ssh
     
 
   * 获得密码：xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+
+
+
+## lv30-31
+
+* 目标：
+
+  * There is a git repository at `ssh://bandit30-git@localhost/home/bandit30-git/repo` via the port `2220`. The password for the user `bandit30-git` is the same as for the user `bandit30`.
+
+    Clone the repository and find the password for the next level.****
+
+* 命令学习：
+
+  * git
+
+* 解题步骤：
+
+  * ssh -p 2220 bandit30@bandit.labs.overthewire.org
+    * xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+  * 获得密码：
 
 # 模板
 
