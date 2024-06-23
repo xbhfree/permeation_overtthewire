@@ -865,7 +865,7 @@ ssh
   
   - 获得密码：gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
 
-## lv24-25
+## lv24-25[尚有问题]
 
 - 目标：
   
@@ -968,8 +968,93 @@ ssh
       cat "res$i" | nc localhost 30002 >> ans
       sleep 2
   done
+  
+  #!/bin/bash  
+  for((i=2; i<=22; i++))
+  do
+      print "res$i" | nc localhost 30002 >> ans
+      sleep 2
+  done
+  
+  
+  #!/bin/bash  
+  for((i=1; i<=30; i++))  
+  do  
+      file="res$i"  
+      # 检查文件是否存在  
+      if [ -f "$file" ]; then
+      	echo "$file start"
+          cat "$file" | nc localhost 30002 >> $file2 
+          echo "$file end"
+      else  
+          echo "文件 $file 不存在"  
+      fi  
+  done
+  
+  
+  #!/bin/bash  
+  cat res2 | nc localhost 30002 >> ans
+  sleep 2
+  cat res3 | nc localhost 30002 >> ans
+  sleep 2
+  cat res4 | nc localhost 30002 >> ans
+  sleep 2
+  cat res5 | nc localhost 30002 >> ans
+  sleep 2
+  cat res6 | nc localhost 30002 >> ans
+  sleep 2
+  cat res7 | nc localhost 30002 >> ans
+  sleep 2
+  cat res8 | nc localhost 30002 >> ans
+  sleep 2
+  cat res9 | nc localhost 30002 >> ans
+  sleep 2
+  cat res10 | nc localhost 30002 >> ans
+  sleep 2
+  cat res11 | nc localhost 30002 >> ans
+  sleep 2
+  cat res12 | nc localhost 30002 >> ans
+  sleep 2
+  cat res13 | nc localhost 30002 >> ans
+  sleep 2
+  cat res14 | nc localhost 30002 >> ans
+  sleep 2
+  cat res15 | nc localhost 30002 >> ans
+  sleep 2
+  cat res16 | nc localhost 30002 >> ans
+  sleep 2
+  cat res17 | nc localhost 30002 >> ans
+  sleep 2
+  cat res18 | nc localhost 30002 >> ans
+  sleep 2
+  cat res19 | nc localhost 30002 >> ans
+  sleep 2
+  cat res20 | nc localhost 30002 >> ans
+  sleep 2
+  cat res21 | nc localhost 30002 >> ans
+  sleep 2
+  cat res22 | nc localhost 30002 >> ans
+  done
+  
+  
+  
+  #!/bin/bash  
+  cat res15 | nc localhost 30002 >> ans
+  sleep 5
+  cat res16 | nc localhost 30002 >> ans
+  sleep 5
+  cat res17 | nc localhost 30002 >> ans
+  sleep 5
+  cat res18 | nc localhost 30002 >> ans
+  sleep 5
+  cat res19 | nc localhost 30002 >> ans
+  sleep 5
+  cat res20 | nc localhost 30002 >> ans
+  sleep 5
+  cat res21 | nc localhost 30002 >> ans
+  done
   ```
-
+  
 - ```python
   ## python2写法
   from pwn import *
@@ -1012,9 +1097,9 @@ ssh
 
 -     -A 查询之后 。-B查询之前
 
-- 获得密码：p7TaowMYrmu23Ol8hiZh9UvD0O9hpx8d
+- 获得密码：iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
 
-## 标记------------------
+
 
 
 
@@ -1071,7 +1156,7 @@ ssh
   
      * :e 编辑模式
   
-  * 获得密码：c7GvcKlw9mC7aUQaPx7nwFstuAIBw1o1
+  * 获得密码：s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
 
 ## lv26-27
 
@@ -1095,7 +1180,7 @@ ssh
   
   -  ./bandit27-do cat /etc/bandit_pass/bandit27
   
-  - 获得密码：YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+  - 获得密码：upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
 
 ## lv27-28
 
@@ -1112,7 +1197,7 @@ ssh
 * 解题步骤：
 
   * ssh -p 2220 bandit27@bandit.labs.overthewire.org 
-    * YnQpBuifNMas1hcUFk70ZmqkhUU2EuaS
+    * upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
   * mkdir /tmp/bandit27tmp
   * cd /tmp/bandit27tmp
   * git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
@@ -1120,7 +1205,7 @@ ssh
   * cd repo/
   * ls
   *  cat README
-  * 获得密码：AVanL161y9rsbcJIsFHuw35rjaOM19nR
+  * 获得密码：Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
 
 ## lv28-29
 
@@ -1138,7 +1223,7 @@ ssh
 
   * ssh -p 2220 bandit28@bandit.labs.overthewire.org
 
-    * AVanL161y9rsbcJIsFHuw35rjaOM19nR
+    * Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
 
   * mkdir /tmp/bandit28tmp
 
@@ -1168,7 +1253,7 @@ ssh
     
   * git show 14f754b
   
-  * 获得密码：tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+  * 获得密码：4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
 
 
 
@@ -1188,7 +1273,7 @@ ssh
 
   * ssh -p 2220 bandit29@bandit.labs.overthewire.org
 
-    *  tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S
+    *  4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
 
   * mkdir /tmp/bandit29tmp
 
@@ -1223,12 +1308,12 @@ ssh
       
        - username: bandit30
       -- password: <no passwords in production!>
-      +- password: xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+      +- password: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
       ```
 
     
 
-  * 获得密码：xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
+  * 获得密码：qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
 
 
 
@@ -1243,12 +1328,22 @@ ssh
 * 命令学习：
 
   * git
+    * git show-ref  显示本地存储库的所有可用的引用以及关联的提交ID
 
 * 解题步骤：
 
   * ssh -p 2220 bandit30@bandit.labs.overthewire.org
-    * xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS
-  * 获得密码：
+    * qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+  * mkdir /tmp/bandit30tmp
+  * cd /tmp/bandit30tmp
+  * git clone ssh://bandit30-git@localhost:2220/home/bandit30-git/repo
+  * git show-ref  
+    * 49ebc0513539a56d3626f3121ff4e72585064047 refs/heads/master
+      49ebc0513539a56d3626f3121ff4e72585064047 refs/remotes/origin/HEAD
+      49ebc0513539a56d3626f3121ff4e72585064047 refs/remotes/origin/master
+      84368f3a7ee06ac993ed579e34b8bd144afad351 refs/tags/secret
+  * git show 84368f
+  * 获得密码：fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
 
 # 模板
 
