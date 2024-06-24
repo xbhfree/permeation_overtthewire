@@ -1345,6 +1345,37 @@ ssh
   * git show 84368f
   * 获得密码：fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
 
+
+
+## lv31-32
+
+* 目标：
+
+  * There is a git repository at `ssh://bandit31-git@localhost/home/bandit31-git/repo` via the port `2220`. The password for the user `bandit31-git` is the same as for the user `bandit31`.
+
+    Clone the repository and find the password for the next level.
+
+* 命令学习：
+
+  * git
+
+* 解题步骤：
+
+  * ssh -p 2220 bandit31@bandit.labs.overthewire.org
+    * fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
+  * mkdir /tmp/bandit31tmp
+  * cd /tmp/bandit31tmp
+  * git clone ssh://bandit31-git@localhost:2220/home/bandit31-git/repo
+  *  cd repo/
+  *  cat README.md
+  * echo 'May I come in?' > key.txt
+  * git add -f key.txt
+  * git commit -m 'add key.txt'
+  * git push origin master
+  * 获得密码：3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+
+
+
 # 模板
 
 * 目标：
