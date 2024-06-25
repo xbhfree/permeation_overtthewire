@@ -1374,7 +1374,31 @@ ssh
   * git push origin master
   * 获得密码：3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
 
+## lv32-33
 
+* 目标：
+  * After all this `git` stuff, it’s time for another escape. Good luck!
+
+* 命令学习：
+  * sh, man
+
+* 解题步骤：
+  * ssh -p 2220 bandit32@bandit.labs.overthewire.org
+    * 3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+  * $0
+  * ls
+  * cat /etc/bandit_pass/bandit33
+  * 获得密码：tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0
+
+## lv33-34
+
+* 目标：
+
+* 命令学习：
+
+* 解题步骤：
+  * ssh -p 2220 bandit @bandit.labs.overthewire.org
+  * 获得密码：
 
 # 模板
 
