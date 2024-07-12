@@ -77,3 +77,26 @@ URL:      http://natas3.natas.labs.overthewire.org
 
 * 找到user.txt
 * 获得密码：natas4:QryZXc2e0zahULdHrtHxzyYkj59kUxLQ
+
+## Natas Level 3 → Level 4
+
+```
+Username: natas4
+URL:      http://natas4.natas.labs.overthewire.org
+```
+
+* curl -isu natas4:QryZXc2e0zahULdHrtHxzyYkj59kUxLQ natas4.natas.labs.overthewire.org --referer "http://natas5.natas.labs.overthewire.org/"
+* The password for natas5 is 0n35PkggAPm2zbEpOU802c0x0Msn1ToK
+* 或者
+* 用brup suite抓包后
+* proxy 抓包修改referer为 http://natas5.natas.labs.overthewire.org/
+  * 保证intercept 为 intercept  is on
+  * 修改referer后点击forward
+  * 返回原来页面即可查看natas5答案
+
+## Natas Level 4 → Level 5
+
+```
+Username: natas5
+URL:      http://natas5.natas.labs.overthewire.org
+```
