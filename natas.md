@@ -100,3 +100,87 @@ URL:      http://natas4.natas.labs.overthewire.org
 Username: natas5
 URL:      http://natas5.natas.labs.overthewire.org
 ```
+
+* 登录后用bp拦截
+* 修改loggedin=0为1
+* Access granted. The password for natas6 is 0RoJwHdSKWFTYR5WuiAewauSuNaBXned
+
+## Natas Level 5 → Level 6
+
+```
+Username: natas6
+URL:      http://natas6.natas.labs.overthewire.org
+```
+
+* 输入账号密码后出现提示
+
+* ``````
+  include "includes/secret.inc";
+  
+    if(array_key_exists("submit", $_POST)) {
+      if($secret == $_POST['secret']) {
+      print "Access granted. The password for natas7 is <censored>";
+    } else {
+      print "Wrong secret";
+    }
+    }
+  ?>
+  ``````
+
+* 尝试访问http://natas6.natas.labs.overthewire.org/includes/secret.inc
+
+  * 
+
+  * ```
+    <?
+    $secret = "FOEIUWGHFEEUHOFUOIU";
+    ?>
+    ```
+
+* 输入FOEIUWGHFEEUHOFUOIU
+
+* Access granted. The password for natas7 is bmg8SvU1LizuWjx3y7xkNERkHxGre0GS
+
+## Natas Level 6 → Level 7
+
+```
+Username: natas7
+URL:      http://natas7.natas.labs.overthewire.org
+```
+
+* 输入账号密码后查看源代码
+  * <!-- hint: password for webuser natas8 is in /etc/natas_webpass/natas8 -->
+* http://natas7.natas.labs.overthewire.org/etc/natas_webpass/natas8
+* 点击about超链接后http://natas7.natas.labs.overthewire.org/index.php?page=about
+* 尝试http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8
+* 获得密码xcoXLmzMkoIP9D7hlgPlh9XD7OgLAe5Q
+
+## Natas Level 7 → Level 8
+
+```
+Username: natas8
+URL:      http://natas8.natas.labs.overthewire.org
+```
+
+* 输入密码后获得提示
+
+  * ``````
+    <?
+    
+    $encodedSecret = "3d3d516343746d4d6d6c315669563362";
+    
+    function encodeSecret($secret) {
+        return bin2hex(strrev(base64_encode($secret)));
+    }
+    
+    if(array_key_exists("submit", $_POST)) {
+        if(encodeSecret($_POST['secret']) == $encodedSecret) {
+        print "Access granted. The password for natas9 is <censored>";
+        } else {
+        print "Wrong secret";
+        }
+    }
+    ?>
+    ``````
+
+  * 
