@@ -239,3 +239,92 @@ URL:      http://natas9.natas.labs.overthewire.org
   * `;`用来做截断
 
 * 获得密码 t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu
+
+## Natas Level 9 → Level 10
+
+```
+Username: natas10
+URL:      http://natas10.natas.labs.overthewire.org
+```
+
+* 提示
+
+* ``````
+  if(array_key_exists("needle", $_REQUEST)) {
+      $key = $_REQUEST["needle"];
+  }
+  
+  if($key != "") {
+      if(preg_match('/[;|&]/',$key)) {
+          print "Input contains an illegal character!";
+      } else {
+          passthru("grep -i $key dictionary.txt");
+      }
+  }
+  ``````
+
+* 过滤；| & 字符，无法用；分割
+
+* . /etc/natas_webpass/natas11 #
+
+  * . 表示匹配任意字符，# 表示截断命令
+
+* 获得密码：UJdqkK1pTu6VLt9UHWAgRZz6sVUZ3lEk
+
+## Natas Level 10 → Level 11
+
+```
+Username: natas11
+URL:      http://natas11.natas.labs.overthewire.org
+```
+
+* 提示
+
+* ``````php
+  $defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");
+  
+  function xor_encrypt($in) {
+      $key = '<censored>';
+      $text = $in;
+      $outText = '';
+  
+      // Iterate through each character
+      for($i=0;$i<strlen($text);$i++) {
+      $outText .= $text[$i] ^ $key[$i % strlen($key)];
+      }
+  
+      return $outText;
+  }
+  
+  function loadData($def) {
+      global $_COOKIE;
+      $mydata = $def;
+      if(array_key_exists("data", $_COOKIE)) {
+      $tempdata = json_decode(xor_encrypt(base64_decode($_COOKIE["data"])), true);
+      if(is_array($tempdata) && array_key_exists("showpassword", $tempdata) && array_key_exists("bgcolor", $tempdata)) {
+          if (preg_match('/^#(?:[a-f\d]{6})$/i', $tempdata['bgcolor'])) {
+          $mydata['showpassword'] = $tempdata['showpassword'];
+          $mydata['bgcolor'] = $tempdata['bgcolor'];
+          }
+      }
+      }
+      return $mydata;
+  }
+  
+  function saveData($d) {
+      setcookie("data", base64_encode(xor_encrypt(json_encode($d))));
+  }
+  
+  $data = loadData($defaultdata);
+  
+  if(array_key_exists("bgcolor",$_REQUEST)) {
+      if (preg_match('/^#(?:[a-f\d]{6})$/i', $_REQUEST['bgcolor'])) {
+          $data['bgcolor'] = $_REQUEST['bgcolor'];
+      }
+  }
+  
+  saveData($data);
+  
+  ``````
+
+* 
