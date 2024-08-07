@@ -327,4 +327,127 @@ URL:      http://natas11.natas.labs.overthewire.org
   
   ``````
 
-* 
+* 获得cookie中data值HmYkBwozJw4WNyAAFyB1VUcqOE1JZjUIBis7ABdmbU1GIjEJAyIxTRg
+
+* ``````
+  <?php 
+   
+  $cookie = ''; # cookie 中 data 字段
+  $defaultdata = array( "showpassword"=>"no", "bgcolor"=>"#ffffff");  
+  function xor_decrypt($in) {     
+      $key = '';     
+      $text = $in;     
+      $outText = json_encode($defaultdata);     
+      // Iterate through each character    
+      for($i=0;$i<strlen($text);$i++){
+      $key .= $text[$i] ^ $outText[$i % strlen($outText)];
+      }
+   
+      return $key;
+  }
+   
+   
+  echo xor_decrypt(base64_decode($cookie));
+   
+  ?>
+  
+  
+  
+  
+  
+  <?php  
+    
+  $data = array( "showpassword"=>"yes", "bgcolor"=>"#ffffff");  
+    
+  function xor_encrypt($in) {  
+      $key = '';  # key
+      $text = $in;  
+      $outText = '';  
+    
+      // Iterate through each character  
+      for($i=0;$i<strlen($text);$i++) {  
+      $outText .= $text[$i] ^ $key[$i % strlen($key)];  
+      }  
+    
+      return $outText;  
+  }  
+    
+  echo base64_encode(xor_encrypt(json_encode($data)));  
+    
+  ?>  
+  ``````
+
+* python解法
+
+* ``````python
+  #!/usr/bin/env python3
+  # -*- coding: utf-8 -*-
+  """
+  Name: natas11.py
+  Auth: Kael Hong
+  Date: 2022-01-25
+  Version: V1.0
+  Description:
+      The decryption function of XOR encryption
+  """
+  
+  # -------------Import Modules----------------------#
+  import base64
+  
+  # -------------Definitions of Variables-------------#
+  # %3D在html中编码为=，不加=也可以
+  data = "HmYkBwozJw4WNyAAFyB1VUcqOE1JZjUIBis7ABdmbU1GIjEJAyIxTRg="
+  origin_data = '{"showpassword":"no","bgcolor":"#ffffff"}'
+  
+  
+  # -------------Definitions of Functions-----------#
+  def xor_cal(a, b):
+      return map(lambda x: chr(x[0] ^ x[1]), zip(a, [ord(x) for x in b]))
+  
+  
+  # -------------Main-------------#
+  if __name__ == '__main__':
+      print('running...')
+      data_base64 = base64.b64decode(data)
+      key = xor_cal(data_base64, origin_data)
+      key = [i for i in key]
+      print(''.join(key))
+      
+      
+     # 获得结果 eDWoeDWoeDWoeDWoeDWoeDWoeDWoeDWoeDWoeDWoe
+     
+     
+     #!/usr/bin/env python3
+  # -*- coding: utf-8 -*-
+  """
+  Name: natas11_encrypt.py
+  Auth: Kael Hong
+  Date: 2022-01-25
+  Version: V1.0
+  Description:
+      The encryption function of XOR
+  """
+   
+  #-------------Import Modules----------------------#
+  import base64
+   
+  #-------------Definitions of Variable-------------#
+  data = '{"showpassword":"yes","bgcolor":"#ffffff"}'
+  key = 'eDWo' # 因为data变为yes，所以取最短的密钥，取用原来长度的也可以
+  key_derive=key*(int(len(data)/len(key)))+key[0:len(data)%len(key)+1]
+   
+  #-------------Definitions of Functions-----------#
+  def xor_cal(m,n):
+      return map(lambda x: chr(ord(x[0])^ord(x[1])),zip(m,n))
+   
+  #-------------Main-------------#
+  if __name__ == '__main__':
+      cipher = bytes(''.join(xor_cal(data,key_derive)),encoding='utf-8')
+      text = base64.b64encode(cipher)
+      print(text)
+      
+      # 获得结果b'HmYkBwozJw4WNyAAFyB1VUc9MhxHaHUNAic4Awo2dVVHZzEJAyIxCUc5'
+  # HmYkBwozJw4WNyAAFyB1VUc9MhxHaHUNAic4Awo2dVVHZzEJAyIxCUc5为有效值
+  ``````
+
+* 获得密码：The password for natas12 is yZdkjAYZRd3R7tq7T5kXMjMJlOIkzDeB
